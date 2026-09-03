@@ -1,0 +1,108 @@
+---
+title: "Coding Basics: For Loops"
+subtitle: "Working with lists, sets, and dataframes"
+output: html_document
+---
+
+## Lists
+
+### Example no1. Converting percentages to proportions
+
+```{r}
+percentages <- c(25, 50, 75, 90)
+```
+
+```{r}
+class(percentages)
+```
+
+```{r}
+print(percentages)
+```
+
+```{r}
+for (pct in percentages) {
+  print(pct/100)
+}
+```
+
+```{r}
+proportions <- c()
+
+for (pct in percentages) {
+  prop <- pct/100
+  proportions <- c(proportions, prop)
+}
+```
+
+```{r}
+print(proportions)
+```
+
+## Sets
+
+### Example no2. Counting categorical data
+
+```{r}
+responses <- c("UK", "Germany", "France", "Germany")
+```
+
+```{r}
+countries <- unique(responses)
+```
+
+```{r}
+countries
+```
+
+```{r}
+for (country in countries) {
+  count <- sum(responses == country)
+  print(paste(country, ":", count))
+}
+```
+
+## Dataframes
+
+### Example no3. Converting raw counts into percentages
+
+```{r}
+library(readxl)
+```
+
+```{r}
+df <- read_excel("data/test_data.xlsx")
+```
+
+```{r}
+df
+```
+
+#### Using .iterrows()
+
+```{r}
+for (i in 1:nrow(df)) {
+  percentage <- (df$n_agreed[i] / df$n_total[i]) * 100
+  print(round(percentage, 2))
+}
+```
+
+#### Using range() and len()
+
+```{r}
+for (i in 1:nrow(df)) {
+  percentage <- (df$n_agreed[i] / df$n_total[i]) * 100
+  print(paste(df$region[i], ":", round(percentage, 1), "%"))
+}
+```
+
+#### Using list comprehension
+
+```{r}
+df$percentages <- round((df$n_agreed / df$n_total) * 100, 1)
+```
+
+```{r}
+# OR
+df$percentages <- round((df$n_agreed / df$n_total) * 100, 1)
+```
