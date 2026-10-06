@@ -13,6 +13,15 @@ percentages <- c(25, 50, 75, 90)
 ```
 
 ```{r}
+percentages_2 <- c(2, 5, 5, 92)
+```
+
+```{r}
+print(percentages_2)
+```
+
+
+```{r}
 class(percentages)
 ```
 
